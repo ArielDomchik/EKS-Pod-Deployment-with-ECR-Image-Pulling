@@ -9,14 +9,20 @@ pipeline {
 	  }
 	}
 	stage('Test') {
+	  steps {
 		sh 'echo test'
+	  }
 	}
 	stage('Clean') {
+	  steps {
 		sh 'sudo docker stop pythonapp'
 		sh 'sudo docker rm pythonapp'
+	  }
 	}
 	stage('Push to ECR') {
+	  steps {
 		sh 'echo this step is for ECR push'
+	  }
 	}
       }
     }
