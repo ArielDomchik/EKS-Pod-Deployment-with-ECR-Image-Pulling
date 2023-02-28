@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent Slave 1
   stages {
     stage('Build') {
       steps {
@@ -27,5 +27,13 @@ pipeline {
 	sh 'sudo docker push public.ecr.aws/x3n7f5y0/arieldomchik:pythonapp'
       }
     }
+  agent Slave 2
+	stages { 
+		stage('Build') {
+			steps { 
+				sh 'la'
+			}
+		}
+	}
   }
 }
