@@ -31,8 +31,7 @@ pipeline {
 	agent { label 'Slave 2' }
 	  steps {
 		sh 'kubectl apply -f deployment.yaml'
-		sh 'kubectl apply -f service.yaml'
-		#sh 'kubectl expose deployment -n leumi eks-sample-linux-deployment --type=LoadBalancer --name=service'
+		sh 'kubectl apply -f service.yaml'		
 		sh 'kubectl describe svc -n leumi service'
   } 
 }
