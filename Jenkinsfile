@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         dir('/home/ubuntu/workspace/ECR+EKS/src') {
-          sh 'sudo docker build -t pythonapp'
+          sh 'sudo docker build -t pythonapp .'
           sh 'sudo docker run -d -p 8080:8080 --name pythonapp pythonapp'
         }
       }
