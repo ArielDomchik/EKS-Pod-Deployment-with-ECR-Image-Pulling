@@ -30,9 +30,10 @@ pipeline {
     stage('Deploy to EKS') {
 	agent { label 'Slave 2' }
 	  steps {
+		dir('/home/ubuntu/') {
 		sh 'kubectl apply -f deployment.yaml'
 		sh 'kubectl expose deployment -n leumi eks-sample-linux-deployment --type=LoadBalancer --name=service'
-  }
+  } }
 }
 }
 }
