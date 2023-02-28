@@ -32,6 +32,7 @@ pipeline {
 	  steps {
 		sh 'kubectl apply -f deployment.yaml'
 		sh 'kubectl expose deployment -n leumi eks-sample-linux-deployment --type=LoadBalancer --name=service'
+		sh 'kubectl describe svc -n leumi service'
   } 
 }
 }
