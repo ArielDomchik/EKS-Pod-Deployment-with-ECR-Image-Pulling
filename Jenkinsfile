@@ -32,7 +32,7 @@ pipeline {
 	  steps {
 		sh 'kubectl apply -f deployment.yaml'
 		sh 'kubectl apply -f service.yaml'		
-		sh 'kubectl describe svc -n leumi service'
+		sh 'kubectl describe svc -n leumi eks-sample-linux-service'
   } 
 }
 }
