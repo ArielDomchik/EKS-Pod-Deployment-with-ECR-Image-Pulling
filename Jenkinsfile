@@ -7,6 +7,7 @@ pipeline {
 			sh 'sudo docker build -t pythonapp'
 			sh 'sudo docker run -d -p 8080:8080 --name pythonapp pythonapp'
 	  }
+	}
 	stage('Test') {
 		sh 'echo test'
 	}
@@ -20,4 +21,3 @@ pipeline {
       }
     }
   }
-}
