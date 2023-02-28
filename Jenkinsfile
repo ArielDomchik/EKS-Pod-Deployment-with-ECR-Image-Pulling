@@ -1,5 +1,5 @@
 pipeline {
-  agent Slave 1
+  agent any
   stages {
     stage('Build') {
       steps {
@@ -23,17 +23,14 @@ pipeline {
     stage('Push to ECR') {
       steps {
         sh 'aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws'
-	sh 'sudo docker tag 625e14bb386b public.ecr.aws/x3n7f5y0/arieldomchik:pythonapp'
+	sh 'sudo docker tag pythonapp public.ecr.aws/x3n7f5y0/arieldomchik:pythonapp'
 	sh 'sudo docker push public.ecr.aws/x3n7f5y0/arieldomchik:pythonapp'
       }
     }
-  agent Slave 2
-	stages { 
-		stage('Build') {
-			steps { 
-				sh 'la'
-			}
-		}
-	}
+    stage('Deploy to EKS') {
+	agent { label 'Slave 2' }
+	  steps {
+		sh 'kubectl apply -f deployment.yaml'
+		sh 'kubectl expose deployment -n leumi eks-sample-linux-deployment --type=LoadBalancer --name=service'
   }
 }
