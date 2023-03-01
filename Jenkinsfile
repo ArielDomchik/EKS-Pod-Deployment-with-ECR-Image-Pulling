@@ -26,7 +26,7 @@ pipeline {
     stage('Push to ECR') {
      agent { label 'Slave 1' }
       steps {
-        sh 'aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 646360616404.dkr.ecr.us-east-1.amazonaws.com'
+        sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 646360616404.dkr.ecr.us-east-1.amazonaws.com'
 	sh 'sudo docker tag pythonapp 646360616404.dkr.ecr.us-east-1.amazonaws.com/leumi-repository:pythonapp'
 	sh 'sudo docker push 646360616404.dkr.ecr.us-east-1.amazonaws.com/leumi-repository:pythonapp'
       }
