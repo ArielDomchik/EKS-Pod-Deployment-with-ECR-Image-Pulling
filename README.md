@@ -1,4 +1,4 @@
-EKS+ECR Deployment
+- EKS+ECR Deployment
 
 This project provides a simple way to deploy a pod with a service, or a deployment with a service to an EKS cluster, which pulls images from an ECR in AWS. The image being pulled from the ECR is a simple web application that shows the hostname and IP of the host. This project can be easily wrapped for your own CI/CD purposes.
 Prerequisites
@@ -9,7 +9,7 @@ Before you can deploy the pod or deployment to your EKS cluster, you'll need the
     Access to an ECR repository in your AWS account
     kubectl command-line tool installed
 
-Setup
+- Setup
 
 Here are the steps you need to follow to set up this project:
 
@@ -29,7 +29,7 @@ Here are the steps you need to follow to set up this project:
     - Apply podspec.yaml and podservice.yaml to deploy the application to EKS from ECR as a Pod.
         
 
-Deployment
+- Deployment
 
 To deploy the pod or deployment to your EKS cluster, simply run the following command:
 
@@ -39,7 +39,7 @@ To deploy the pod or deployment to your EKS cluster, simply run the following co
 This will create the necessary pod and service resources in your EKS cluster. You can customize the podspec.yaml and podservice.yaml files to fit your own needs.
 
 
-Testing LoadBalancer
+- Testing LoadBalancer
 
 Once the pod or deployment and service resources are created, you can test the LoadBalancer functionality by running the following command:
 
