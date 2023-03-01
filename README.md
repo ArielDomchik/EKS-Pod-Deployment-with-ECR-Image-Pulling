@@ -11,7 +11,7 @@ Prerequisites
 Before you can deploy the pod or deployment to your EKS cluster, you'll need the following:
 
 - Also you have the option to wrap the project for your own CI/CD Purposes
-=======
+
     A running EKS cluster
     Access to an ECR repository in your AWS account
     kubectl command-line tool installed
