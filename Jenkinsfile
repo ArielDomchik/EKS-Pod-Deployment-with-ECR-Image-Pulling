@@ -26,9 +26,9 @@ pipeline {
     stage('Push to ECR') {
      agent { label 'Slave 1' }
       steps {
-        sh 'aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws'
-	sh 'sudo docker tag pythonapp public.ecr.aws/x3n7f5y0/arieldomchik:pythonapp'
-	sh 'sudo docker push public.ecr.aws/x3n7f5y0/arieldomchik:pythonapp'
+        sh 'aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 646360616404.dkr.ecr.us-east-1.amazonaws.com'
+	sh 'sudo docker tag pythonapp 646360616404.dkr.ecr.us-east-1.amazonaws.com/leumi-repository:pythonapp'
+	sh 'sudo docker push 646360616404.dkr.ecr.us-east-1.amazonaws.com/leumi-repository:pythonapp'
       }
     }
     stage('Deploy to EKS') {
