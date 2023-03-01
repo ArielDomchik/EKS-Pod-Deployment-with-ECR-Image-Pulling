@@ -29,7 +29,7 @@ This will create the necessary pod and service resources in your EKS cluster. Yo
 
 Once the pod or deployment and service resources are created, you can test the LoadBalancer functionality by running the following command:
 
-kubectl get services
+    kubectl get services
 
 This will output a list of services in your EKS cluster. You can then open a web browser and navigate to http://<external-ip>:80 to see the web application running.
     
