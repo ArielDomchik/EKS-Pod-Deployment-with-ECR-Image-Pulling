@@ -10,3 +10,4 @@ This sample-app is to test and watch your hostnames and ip's of the pods.
 
 - at /configuration-for-deployment you can find deployment.yaml and service.yaml (this is to test the cluster's loadbalancer) 
 
+- Also you have the option to wrap the project for your own CI/CD Purposes
