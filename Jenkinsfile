@@ -30,10 +30,12 @@ pipeline {
     stage('Deploy to EKS') {
 	agent { label 'Slave 2' }
 	  steps {
-		sh 'kubectl apply -f deployment.yaml'
-		sh 'kubectl apply -f service.yaml'		
-		sh 'kubectl describe svc -n leumi eks-sample-linux-service'
-  } 
-}
-}
+		dir('/home/ubuntu/workspace/ECR+EKS/k8s-configuration/') {
+		sh 'kubectl apply -f podspec.yaml'
+		sh 'kubectl apply -f podservice.yaml'		
+		sh 'kubectl describe svc -n leumi pod-service'
+		}
+             } 
+         }
+     }
 }
