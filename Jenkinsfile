@@ -1,34 +1,21 @@
 pipeline {
   agent none
+  environment { ECR_URL = '646360616404.dkr.ecr.us-east-1.amazonaws.com' }
   stages {
     stage('Build') {
      agent { label 'Slave 1' }
       steps {
         dir('/home/ubuntu/workspace/ECR+EKS/src') {
           sh 'sudo docker build -t pythonapp .'
-          sh 'sudo docker run -d -p 8080:8080 --name pythonapp pythonapp'
-        }
-      }
-    }
-    stage('Test') {
-     agent { label 'Slave 1' }
-      steps {
-        sh 'echo test'
-      }
-    }
-    stage('Clean') {
-     agent { label 'Slave 1' }
-      steps {
-        sh 'sudo docker stop pythonapp'
-        sh 'sudo docker rm pythonapp'
+         }
       }
     }
     stage('Push to ECR') {
      agent { label 'Slave 1' }
       steps {
-        sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 646360616404.dkr.ecr.us-east-1.amazonaws.com'
-	sh 'sudo docker tag pythonapp 646360616404.dkr.ecr.us-east-1.amazonaws.com/leumi-repository:pythonapp'
-	sh 'sudo docker push 646360616404.dkr.ecr.us-east-1.amazonaws.com/leumi-repository:pythonapp'
+        sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin ${ECR_URL}'
+	sh 'sudo docker tag pythonapp ${ECR_URL}/leumi-repository:pythonapp'
+	sh 'sudo docker push ${ECR_URL}/leumi-repository:pythonapp'
       }
     }
     stage('Deploy to EKS') {
