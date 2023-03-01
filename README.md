@@ -1,2 +1,12 @@
 Deploying Python web application to your EKS Cluster!
-Watch your hostname and ip to test your loadbalancer!
+
+This sample-app is to test and watch your hostnames and ip's of the pods.
+
+- Clone the repository : https://github.com/ArielDomchik/Leumi-1.git
+
+- Apply Configuration files at /k8s-configuration, There are 2 options:
+
+- podspec.yaml and podservice.yaml to deploy a pod only. (run kubectl apply -f podspec.yaml podservice.yaml)
+
+- at /configuration-for-deployment you can find deployment.yaml and service.yaml (this is to test the cluster's loadbalancer) 
+
