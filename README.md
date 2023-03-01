@@ -45,4 +45,4 @@ Once the pod or deployment and service resources are created, you can test the L
 
     kubectl get services
 
-This will output a list of services in your EKS cluster. You can then open a web browser and navigate to http://<LoadBalancer DNS name>:80 to see the load balancer in action.
+This will output a list of services in your EKS cluster. You can then open a web browser and navigate to http://<LoadBalancer DNS name>:80 to see the load balancer in action
