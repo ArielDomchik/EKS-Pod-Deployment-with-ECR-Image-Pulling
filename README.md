@@ -19,7 +19,7 @@ Before you can deploy the pod or deployment to your EKS cluster, you'll need the
 
 To deploy the pod or deployment to your EKS cluster, simply run the following command:
 
-kubectl apply -f podspec.yaml -f podservice.yaml
+    kubectl apply -f podspec.yaml -f podservice.yaml
 
 This will create the necessary pod and service resources in your EKS cluster. You can customize the podspec.yaml and podservice.yaml files to fit your own needs.
 
