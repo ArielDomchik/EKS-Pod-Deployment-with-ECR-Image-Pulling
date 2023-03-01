@@ -26,8 +26,8 @@ spec:
                 - amd64
                 - arm64
       containers:
-      - name: nginx
-        image: public.ecr.aws/x3n7f5y0/arieldomchik:pythonapp
+      - name: app
+        image: 646360616404.dkr.ecr.us-east-1.amazonaws.com/leumi-repository:pythonapp
         ports:
         - name: http
           containerPort: 8080
