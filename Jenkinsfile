@@ -14,8 +14,8 @@ pipeline {
      agent { label 'Slave 1' }
       steps {
         sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin ${ECR_URL}'
-	sh 'sudo docker tag python-app ${ECR_URL}/leumi-repository:python-app'
-	sh 'sudo docker push ${ECR_URL}/leumi-repository:python-app'
+	sh 'sudo docker tag python-app ${ECR_URL}/leumi-repository:python-app${BUILD_NUMBER}'
+	sh 'sudo docker push ${ECR_URL}/leumi-repository:python-app${BUILD_NUMBER}'
   }
 }
     stage('Deploy to EKS') {
@@ -23,6 +23,7 @@ pipeline {
 	  steps {
 		dir('/home/ubuntu/workspace/ECR+EKS/k8s-configuration/') {
 		sh 'kubectl apply -f podspec.yaml'
+		sh 'kubectl patch pod pod-sample -p "{"spec":{"containers":[{"name":"pythonapp","image":"${ECR_URL}/leumi-repository:python-app${BUILD_NUMBER}"}]}}"
 		sh 'kubectl apply -f podservice.yaml'	
 		sh 'kubectl describe svc -n leumi pod-service'
 	}
