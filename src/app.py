@@ -8,6 +8,7 @@ def index():
     try:
         host_name = socket.gethostname()
         host_ip = socket.gethostbyname(host_name)
+        time.sleep(1)
         return render_template('index.html', hostname=host_name, ip=host_ip)
     except:
         return render_template('error.html')
