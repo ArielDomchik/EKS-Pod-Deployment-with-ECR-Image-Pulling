@@ -24,47 +24,6 @@ pipeline {
 		dir('/home/ubuntu/workspace/ECR+EKS/k8s-configuration/') {
 		sh 'kubectl apply -f podspec.yaml'
 		sh 'kubectl apply -f podservice.yaml'	
-		sh 'kubectl patch pod -n leumi pod-sample -p "{
-  "spec": {
-    "affinity": {
-      "nodeAffinity": {
-        "requiredDuringSchedulingIgnoredDuringExecution": {
-          "nodeSelectorTerms": [
-            {
-              "matchExpressions": [
-                {
-                  "key": "kubernetes.io/arch",
-                  "operator": "In",
-                  "values": [
-                    "amd64",
-                    "arm64"
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "containers": [
-      {
-        "name": "pythonapp",
-        "image": "public.ecr.aws/x3n7f5y0/arieldomchik:python-app${BUILD_NUMBER}",
-        "ports": [
-          {
-            "name": "http",
-            "containerPort": 8080
-          }
-        ],
-        "imagePullPolicy": "Always"
-      }
-    ],
-    "nodeSelector": {
-      "kubernetes.io/os": "linux"
-    }
-  }
-}"
-
 		sh 'kubectl describe svc -n leumi pod-service'
 	}
       } 
