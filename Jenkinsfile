@@ -22,8 +22,8 @@ pipeline {
 	agent { label 'Slave 2' }
 	  steps {
 		dir('/home/ubuntu/workspace/ECR+EKS/k8s-configuration/') {
-		sh 'kubectl delete pod -n leumi pod-sample && kubectl delete service -n leumi pod-service'
-		sh 'kubectl apply -f podservice.yaml && kubectl apply podservice.yaml'	
+		sh 'kubectl delete pod -n leumi pod-sample && kubectl delete svc -n leumi pod-service'
+		sh 'kubectl apply -f podspec.yaml && kubectl apply -f podservice.yaml'	
 		sh 'kubectl describe svc -n leumi pod-service'
 	}
       } 
