@@ -6,7 +6,7 @@ pipeline {
      agent { label 'Slave 1' }
       steps {
         dir('/home/ubuntu/workspace/ECR+EKS/src') {
-          sh 'sudo docker build -t pythonapp .'
+          sh 'sudo docker build -t python-app .'
     }
   }
 }
@@ -14,8 +14,8 @@ pipeline {
      agent { label 'Slave 1' }
       steps {
         sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin ${ECR_URL}'
-	sh 'sudo docker tag pythonapp ${ECR_URL}/leumi-repository:pythonapp'
-	sh 'sudo docker push ${ECR_URL}/leumi-repository:pythonapp'
+	sh 'sudo docker tag pythonapp ${ECR_URL}/leumi-repository:python-app'
+	sh 'sudo docker push ${ECR_URL}/leumi-repository:python-app'
   }
 }
     stage('Deploy to EKS') {
