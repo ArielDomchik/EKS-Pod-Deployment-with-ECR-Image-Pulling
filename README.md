@@ -28,13 +28,6 @@ Here are the steps you need to follow to set up this project:
     13 Apply podspec.yaml and podservice.yaml to deploy the application to EKS from ECR as a Pod.
         
 
-- Deployment
-
-To deploy the pod or deployment to your EKS cluster, simply run the following command:
-
-    kubectl apply -f podspec.yaml
-    kubectl apply -f podservice.yaml
-
 This will create the necessary pod and service resources in your EKS cluster. You can customize the podspec.yaml and podservice.yaml files to fit your own needs.
 
 
