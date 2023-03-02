@@ -13,20 +13,19 @@ Before you can deploy the pod or deployment to your EKS cluster, you'll need the
 
 Here are the steps you need to follow to set up this project:
 
-    - Create a GitLab user and repository for the project
-    - Import a public SSH key to the GitHub project to allow accessibility
-    - Upload the project to the GitLab repository
-    - Install Jinja2=3.1.1 and Flask=2.0.1 requirements
-    - Integrate Jenkins with GitHub webhook and Jenkins GitHub plugin
-    - Run Jenkinsfile from the correct path(usually from master branch)
-    - Initiate a private repository in ECR
-    - Log in from EC2 agent to ECR with aws get-login-password | docker login to <user-aws-id>.dkr.ecr.<region>.amazonaws.com
-    - Tag the image to <user-aws-id>.dkr.ecr.<region>.amazonaws.com/<repo>:<tag> and push it. See ECR documentation for more information.
-    - Create an EKS cluster with Node group and assign IAM roles for each entity. The roles for nodes should include AmazonEKSWorkerNodePolicy and AmazonEC2ContainerRegistryReadOnly. See the EKS documentation for more information.
-    - Integrate Agents and download kubectl and aws-cli to connect EC2 to EKS
-    - Update kubeconfig
-    - (OPTIONAL) Apply deployment.yaml and service.yaml to deploy the application to EKS from ECR as a Deployment. See the EKS documentation for more information.
-    - Apply podspec.yaml and podservice.yaml to deploy the application to EKS from ECR as a Pod.
+    1 Create a GitLab user and repository for the project
+    2 Import a public SSH key to the GitHub project to allow accessibility
+    3 Upload the project to the GitLab repository
+    4 Integrate Jenkins with GitHub webhook and Jenkins GitHub plugin
+    5 Run Jenkinsfile from the correct path(usually from master branch)
+    6 Initiate a private repository in ECR
+    7 Log in from EC2 agent to ECR with aws get-login-password | docker login to <user-aws-id>.dkr.ecr.<region>.amazonaws.com
+    8 Tag the image to <user-aws-id>.dkr.ecr.<region>.amazonaws.com/<repo>:<tag> and push it. See ECR documentation for more information.
+    9 Create an EKS cluster with Node group and assign IAM roles for each entity. The roles for nodes should include AmazonEKSWorkerNodePolicy and AmazonEC2ContainerRegistryReadOnly. See the EKS documentation for more information.
+    10 Integrate Agents and download kubectl and aws-cli to connect EC2 to EKS
+    11 Update kubeconfig
+    12 (OPTIONAL) Apply deployment.yaml and service.yaml to deploy the application to EKS from ECR as a Deployment. See the EKS documentation for more information.
+    13 Apply podspec.yaml and podservice.yaml to deploy the application to EKS from ECR as a Pod.
         
 
 - Deployment
