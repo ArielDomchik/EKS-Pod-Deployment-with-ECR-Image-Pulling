@@ -24,7 +24,7 @@ pipeline {
 		dir('/home/ubuntu/workspace/ECR+EKS/k8s-configuration/') {
 		sh 'kubectl apply -f podspec.yaml'
 		sh 'kubectl apply -f podservice.yaml'	
-		sh 'kubectl patch pod nginx -p '{"spec":{"containers":[{"name": "pythonapp","image": "{ECR_URL}/leumi-repository:python-app${BUILD_NUMBER}"}]}}'
+		sh 'kubectl patch pod -n leumi pod-sample -p '{"spec":{"containers":[{"name": "pythonapp","image": "{ECR_URL}/leumi-repository:python-app${BUILD_NUMBER}"}]}}'
 		sh 'kubectl describe svc -n leumi pod-service'
 	}
       } 
