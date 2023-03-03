@@ -1,4 +1,4 @@
-	pipeline {
+pipeline {
   agent none
   environment { ECR_URL = '646360616404.dkr.ecr.us-east-1.amazonaws.com' }
   stages {

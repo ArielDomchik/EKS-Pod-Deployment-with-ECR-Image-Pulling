@@ -1,40 +1,41 @@
-- EKS+ECR Deployment
 
-This project provides a simple way to deploy a pod with a service, or a deployment with a service to an EKS cluster, which pulls images from an ECR in AWS. The image being pulled from the ECR is a simple web application that shows the hostname and IP of the host. This project can be easily wrapped for your own CI/CD purposes.
-Prerequisites
+## EKS Pod Deployment with ECR Image Pulling
 
-Before you can deploy the pod or deployment to your EKS cluster, you'll need the following:
+This project provides a simple way to deploy a pod with a service to an EKS cluster, which pulls images from an ECR repository in AWS.
+The image being pulled from the ECR is a simple web application that shows the hostname and IP of the host. 
 
-    A running EKS cluster
-    Access to an ECR repository in your AWS account
-    kubectl command-line tool installed
+### Prerequisites
 
-- Setup
+Before you can deploy the pod to your EKS cluster, you'll need the following:
 
-Here are the steps you need to follow to set up this project:
+-   A running EKS cluster
+-   Access to an ECR repository in your AWS account
+-   Jenkins installed with a master and two agent servers
+-   `kubectl` command-line tool installed
 
-    1 Create a GitLab user and repository for the project
-    2 Import a public SSH key to the GitHub project to allow accessibility
-    3 Upload the project to the GitLab repository
-    4 Integrate Jenkins with GitHub webhook and Jenkins GitHub plugin
-    5 Run Jenkinsfile from the correct path(usually from master branch)
-    6 Initiate a private repository in ECR
-    7 Log in from EC2 agent to ECR with aws get-login-password | docker login to <user-aws-id>.dkr.ecr.<region>.amazonaws.com
-    8 Tag the image to <user-aws-id>.dkr.ecr.<region>.amazonaws.com/<repo>:<tag> and push it. See ECR documentation for more information.
-    9 Create an EKS cluster with Node group and assign IAM roles for each entity. The roles for nodes should include AmazonEKSWorkerNodePolicy and AmazonEC2ContainerRegistryReadOnly. See the EKS documentation for more information.
-    10 Integrate Agents and download kubectl and aws-cli to connect EC2 to EKS
-    11 Update kubeconfig
-    12 (OPTIONAL) Apply deployment.yaml and service.yaml to deploy the application to EKS from ECR as a Deployment. See the EKS documentation for more information.
-    13 Apply podspec.yaml and podservice.yaml to deploy the application to EKS from ECR as a Pod.
-        
+### Setup
 
-This will create the necessary pod and service resources in your EKS cluster. You can customize the podspec.yaml and podservice.yaml files to fit your own needs.
+Follow these steps to set up this project:
 
+1.  Create a GitLab user and repository for the project.
+2.  Import a public SSH key to the GitHub project to allow accessibility.
+3.  Upload the project to the GitLab repository.
+4.  Integrate Jenkins with GitHub webhook and Jenkins GitHub plugin.
+5.  Run `Jenkinsfile` from the correct path (usually from the master branch).
+6.  Initiate a private repository in ECR.
+7.  Log in from EC2 agent to ECR with `aws get-login-password | docker login` to `<user-aws-id>.dkr.ecr.<region>.amazonaws.com`.
+8.  Tag the image to `<user-aws-id>.dkr.ecr.<region>.amazonaws.com/<repo>:<tag>` and push it. See ECR documentation for more information.
+9.  Create an EKS cluster with a Node group and assign IAM roles for each entity. The roles for nodes should include `AmazonEKSWorkerNodePolicy` and `AmazonEC2ContainerRegistryReadOnly`. See the EKS documentation for more information.
+10.  Integrate agents and download `kubectl` and `aws-cli` to connect EC2 to EKS.
+11.  Update `kubeconfig`.
+12.  Apply `podspec.yaml` and `podservce.yaml` to deploy the application to EKS from ECR as a Pod. See the EKS documentation for more information.
 
-- Testing LoadBalancer
+This will create the necessary pod and service resources in your EKS cluster. You can customize the `podspec.yaml` and `podservice.yaml` files to fit your own needs.
 
-Once the pod or deployment and service resources are created, you can test the LoadBalancer functionality by running the following command:
+### Testing Load Balancer
 
-    kubectl get services
+Once the pod and service resources are created, you can test the LoadBalancer functionality by running the following command:
 
-This will output a list of services in your EKS cluster. You can then open a web browser and navigate to http://<LoadBalancer DNS name>:80 to see the load balancer in action.
+`kubectl get services` 
+
+This will output a list of services in your EKS cluster. You can then open a web browser and navigate to `https://<load_balancer_dns_name>:443` to see the load balancer in action.
