@@ -29,7 +29,7 @@ Follow these steps to set up this project:
 10.  Integrate agents and download `kubectl` and `aws-cli` to connect EC2 to EKS.
 11.  Update `kubeconfig`.
 12.  Customize `Jenkinsfile` for your own purposes, with appropiate customization to `podspec.yaml` and `podservice.yaml` too.
-13.  Run the pipeline and enjoy the deployment of the your pod in eks.
+13.  Run the pipeline and enjoy the deployment of your pod in eks.
 
 This will create the necessary pod and service resources in your EKS cluster. You can customize the `podspec.yaml` and `podservice.yaml` files to fit your own needs.
 
