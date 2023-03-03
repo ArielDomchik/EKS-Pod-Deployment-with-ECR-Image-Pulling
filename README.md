@@ -28,7 +28,8 @@ Follow these steps to set up this project:
 9.  Create an EKS cluster with a Node group and assign IAM roles for each entity. The roles for nodes should include `AmazonEKSWorkerNodePolicy` and `AmazonEC2ContainerRegistryReadOnly`. See the EKS documentation for more information.
 10.  Integrate agents and download `kubectl` and `aws-cli` to connect EC2 to EKS.
 11.  Update `kubeconfig`.
-12.  Apply `podspec.yaml` and `podservce.yaml` to deploy the application to EKS from ECR as a Pod. See the EKS documentation for more information.
+12.  Customize `Jenkinsfile` for your own purposes, with appropiate customization to `podspec.yaml` and `podservice.yaml` too.
+13.  Run the pipeline and enjoy the deployment of the your pod in eks.
 
 This will create the necessary pod and service resources in your EKS cluster. You can customize the `podspec.yaml` and `podservice.yaml` files to fit your own needs.
 
